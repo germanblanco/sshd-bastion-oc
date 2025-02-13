@@ -1,8 +1,8 @@
-FROM ubuntu:24.04
+FROM quay.io/fedora/fedora:latest
 
-RUN apt-get update && apt-get install -y openssh-server && \
-    mkdir /var/run/sshd && \
-    useradd -m -s /bin/bash tunneluser && \
+RUN dnf install -y openssh-server iproute iputils && \
+    dnf clean all
+RUN useradd -m -s /bin/bash tunneluser && \
     mkdir -p /home/tunneluser/.ssh && \
     chmod 700 /home/tunneluser/.ssh && \
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
@@ -15,4 +15,3 @@ RUN chmod +x /entrypoint.sh
 EXPOSE 2222/tcp 6343/udp
 
 CMD ["/entrypoint.sh"]
-
