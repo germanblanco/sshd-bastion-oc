@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sshd-bastion
+  namespace: bastion
+  labels:
+    app: sshd-bastion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sshd-bastion
+  template:
+    metadata:
+      labels:
+        app: sshd-bastion
+    spec:
+      containers:
+        - name: sshd
+          image: sshd-bastion
+          ports:
+            - containerPort: 22
+              protocol: TCP
+            - containerPort: 6343
+              protocol: UDP
+          env:
+            - name: SSH_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sshd-bastion-secret
+                  key: SSH_USER
+            - name: SSH_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: sshd-bastion-secret
+                  key: SSH_PASS
