@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+    ssh-keygen -A
+fi
+
 if [[ "$SSH_PASS" ]]; then
     echo "tunneluser:$SSH_PASS" | chpasswd
 else
@@ -8,5 +12,4 @@ else
     exit 1
 fi
 
-# Start SSH Server
 exec /usr/sbin/sshd -D
