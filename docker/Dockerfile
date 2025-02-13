@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora:latest
+FROM quay.io/fedora/fedora:39
 
 RUN dnf install -y openssh-server iproute iputils && \
     dnf clean all
