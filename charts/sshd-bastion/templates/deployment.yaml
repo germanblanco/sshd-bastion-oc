@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: sshd
-          image: sshd-bastion
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - containerPort: 22
               protocol: TCP
