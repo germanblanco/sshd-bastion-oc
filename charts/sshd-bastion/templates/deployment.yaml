@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: sshd
-          image: "quay.io/abranzyck/sshd-bastion:test4"
+          image: "quay.io/abranzyck/sshd-bastion:test6"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 22
