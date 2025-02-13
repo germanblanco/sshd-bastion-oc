@@ -8,12 +8,14 @@ spec:
     app: sshd-bastion
   type: NodePort
   ports:
-    - protocol: TCP
+    - name: ssh
+      protocol: TCP
       port: 2222
       targetPort: 2222
-      nodePort: 2222
-   - name: sflow
+      nodePort: 32222
+    - name: sflow
       protocol: UDP
       port: 6343
       targetPort: 6343
-      nodePort: 6343
+      nodePort: 30343
+
