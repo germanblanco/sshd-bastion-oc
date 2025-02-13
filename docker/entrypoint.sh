@@ -12,4 +12,4 @@ else
     exit 1
 fi
 
-exec /usr/sbin/sshd -D
+exec /usr/sbin/sshd -D -p 2222
