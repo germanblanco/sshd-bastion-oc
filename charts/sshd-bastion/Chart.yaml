@@ -1,0 +1,7 @@
+apiVersion: v1
+name: sshd-bastion
+description: SSH passthrough bastion host in a container
+
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

@@ -1,3 +1,3 @@
 #!/bin/bash
-podman build -t default-route-openshift-image-registry.apps-crc.testing/test-gw/sshd-bastion:test4 .
-podman push default-route-openshift-image-registry.apps-crc.testing/test-gw/sshd-bastion:test4
+podman build -t quay.io/abranzyck/sshd-bastion:test6 .
+podman push quay.io/abranzyck/sshd-bastion:test6

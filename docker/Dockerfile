@@ -6,10 +6,11 @@ RUN useradd -m -s /bin/bash tunneluser && \
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
     echo 'AllowUsers tunneluser' >> /etc/ssh/sshd_config
 
+RUN chmod a+x /etc && chmod a+x /etc/ssh
+RUN chmod a+r /etc && chmod a+r /etc/ssh && chmod a+r /etc/ssh/sshd_config
 RUN ssh-keygen -A
 RUN mkdir -p /home/tunneluser/.ssh
 RUN chown tunneluser:tunneluser /home/tunneluser/.ssh
-RUN chmod 700 /home/tunneluser/.ssh
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

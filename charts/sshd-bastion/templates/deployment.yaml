@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
         - name: sshd
-          image: "default-route-openshift-image-registry.apps-crc.testing/test-gw/sshd-bastion:latest"
+          image: "quay.io/abranzyck/sshd-bastion:test4"
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 22
               protocol: TCP
