@@ -1,14 +1,11 @@
 #!/bin/bash
 set -e
 
-if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
-    ssh-keygen -A
-fi
-
-if [[ "$SSH_PASS" ]]; then
-    echo "tunneluser:$SSH_PASS" | chpasswd
+if [[ "$SSH_KEY" ]]; then
+    mkdir -p /home/tunneluser/.ssh
+    echo "$SSH_KEY" > /home/tunneluser/.ssh/authorized_keys
 else
-    echo "Error: set SSH_PASS"
+    echo "Error: set SSH_KEY"
     exit 1
 fi
 

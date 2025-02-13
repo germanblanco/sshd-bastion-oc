@@ -17,16 +17,15 @@ spec:
     spec:
       containers:
         - name: sshd
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "default-route-openshift-image-registry.apps-crc.testing/test-gw/sshd-bastion:latest"
           ports:
             - containerPort: 22
               protocol: TCP
             - containerPort: 6343
               protocol: UDP
           env:
-            - name: SSH_PASS
+            - name: SSH_KEY
               valueFrom:
                 secretKeyRef:
                   name: sshd-bastion-secret
-                  key: SSH_PASS
-
+                  key: SSH_KEY
