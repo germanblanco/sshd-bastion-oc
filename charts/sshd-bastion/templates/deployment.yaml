@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sshd-bastion
-  namespace: bastion
+  namespace: test-gw
   labels:
     app: sshd-bastion
 spec:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: sshd
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 22
               protocol: TCP
@@ -29,3 +29,4 @@ spec:
                 secretKeyRef:
                   name: sshd-bastion-secret
                   key: SSH_PASS
+

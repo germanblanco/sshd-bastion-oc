@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: sshd-bastion-service
-  namespace: bastion
+  namespace: test-gw
 spec:
   selector:
     app: sshd-bastion
