@@ -24,11 +24,6 @@ spec:
             - containerPort: 6343
               protocol: UDP
           env:
-            - name: SSH_USER
-              valueFrom:
-                secretKeyRef:
-                  name: sshd-bastion-secret
-                  key: SSH_USER
             - name: SSH_PASS
               valueFrom:
                 secretKeyRef:

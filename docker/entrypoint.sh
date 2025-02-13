@@ -1,15 +1,12 @@
 #!/bin/bash
 set -e
 
-# Set SSH user and password from environment variables
-if [[ -n "$SSH_USER" && -n "$SSH_PASS" ]]; then
-    echo "$SSH_USER:$SSH_PASS" | chpasswd
-    usermod -l "$SSH_USER" tunneluser  # Rename user
+if [[ "$SSH_PASS" ]]; then
+    echo "tunneluser:$SSH_PASS" | chpasswd
 else
-    echo "Error: SSH_USER and SSH_PASS must be set!"
+    echo "Error: set SSH_PASS"
     exit 1
 fi
 
 # Start SSH Server
 exec /usr/sbin/sshd -D
-
