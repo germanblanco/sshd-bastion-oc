@@ -17,13 +17,13 @@ spec:
     spec:
       containers:
         - name: udplistener
-          image: "quay.io/abranzyck/sshd-udplistener:ubuntu4"
+          image: "quay.io/abranzyck/sshd-udplisten:arm_ubuntu5"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 6343
               protocol: UDP
         - name: sshd
-          image: "quay.io/abranzyck/sshd-bastion:ubuntu4"
+          image: "quay.io/abranzyck/sshd-bastion:arm_ubuntu5"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 22
