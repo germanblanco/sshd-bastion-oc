@@ -27,6 +27,6 @@ RUN apt update && apt upgrade -y &&\
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 2222/tcp 6343/udp
+EXPOSE 2222/tcp 6343/tcp
 
 CMD ["/entrypoint.sh"]

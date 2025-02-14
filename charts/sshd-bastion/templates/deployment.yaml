@@ -16,6 +16,12 @@ spec:
         app: sshd-bastion
     spec:
       containers:
+        - name: udplistener
+          image: "quay.io/abranzyck/sshd-udplistener:ubuntu4"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6343
+              protocol: UDP
         - name: sshd
           image: "quay.io/abranzyck/sshd-bastion:ubuntu4"
           imagePullPolicy: IfNotPresent
@@ -23,7 +29,7 @@ spec:
             - containerPort: 22
               protocol: TCP
             - containerPort: 6343
-              protocol: UDP
+              protocol: TCP
           env:
             - name: SSH_KEY
               valueFrom:
