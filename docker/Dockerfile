@@ -4,7 +4,8 @@ RUN apt update && apt upgrade -y &&\
     apt install -y openssh-server && \
     useradd -m -s /bin/bash tunneluser && \
     passwd -d tunneluser && \
-    mkdir -p /keys/etc/ssh && \
+    mkdir -p /keys && \
+    chmod 777 /keys && \
     mkdir -p /var/run/sshd && \
     chmod 755 /var/run/sshd && \
     ssh-keygen -A && \
