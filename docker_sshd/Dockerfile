@@ -1,8 +1,8 @@
-FROM quay.io/fedora/fedora:39
+FROM registry.access.redhat.com/ubi8/ubi-minimal
 
-RUN dnf install -y openssh-server iproute iputils && \
-    dnf clean all
-RUN useradd -m -s /bin/bash tunneluser && \
+RUN microdnf install -y openssh-server && \
+    microdnf clean all
+RUN useradd -m -s /bin/bash --uid 1001 tunneluser && \
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
     echo 'AllowUsers tunneluser' >> /etc/ssh/sshd_config
 

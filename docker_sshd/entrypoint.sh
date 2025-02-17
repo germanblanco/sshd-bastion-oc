@@ -3,7 +3,6 @@ set -e
 
 if [[ "$SSH_KEY" ]]; then
     echo "$SSH_KEY" > /home/tunneluser/.ssh/authorized_keys
-    chmod a+r /home/tunneluser/.ssh/authorized_keys
 else
     echo "Error: set SSH_KEY"
     exit 1
