@@ -1,6 +1,7 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 
-RUN microdnf install -y openssh-server passwd && \
+RUN microdnf upgrade -y && \
+    microdnf install -y openssh-server passwd && \
     microdnf clean all
 RUN useradd -m -s /bin/bash --uid 1001 tunneluser && \
     passwd -d tunneluser && \
