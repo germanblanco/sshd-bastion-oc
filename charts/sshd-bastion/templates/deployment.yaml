@@ -16,14 +16,23 @@ spec:
         app: sshd-bastion
     spec:
       containers:
-        - name: sshd
-          image: "quay.io/abranzyck/sshd-bastion:test6"
+        - name: udplistener
+          image: "quay.io/abranzyck/sshd-udplisten:arm_ubuntu5"
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6343
+              protocol: UDP
+        - name: sshd
+          image: "quay.io/abranzyck/sshd-bastion:arm_rhel_ubi1"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1001  # UID of tunneluser
           ports:
             - containerPort: 22
               protocol: TCP
             - containerPort: 6343
-              protocol: UDP
+              protocol: TCP
           env:
             - name: SSH_KEY
               valueFrom:
