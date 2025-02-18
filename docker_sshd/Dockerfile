@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/ubi8/ubi-minimal
 RUN microdnf upgrade -y && \
     microdnf install -y openssh-server passwd && \
     microdnf clean all
-RUN useradd -m -s /bin/bash --uid 1001 tunneluser && \
+RUN useradd -m -s /bin/false --uid 1001 tunneluser && \
     passwd -d tunneluser && \
     mkdir -p /keys && \
     chmod 777 /keys && \
