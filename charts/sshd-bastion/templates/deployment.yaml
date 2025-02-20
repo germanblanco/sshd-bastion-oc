@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sshd-bastion
-  namespace: test-gw
+  namespace: sflow-gw
   labels:
     app: sshd-bastion
 spec:
@@ -15,21 +15,23 @@ spec:
       labels:
         app: sshd-bastion
     spec:
+      serviceAccountName: slflow-sa
       containers:
         - name: udplistener
-          image: "quay.io/abranzyck/sshd-udplisten:rhel_ubi1"
+          image: "quay.io/abranzyck/sshd-udplisten:test_rhel_ubi3"
           imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
           ports:
             - containerPort: 6343
               protocol: UDP
         - name: sshd
-          image: "quay.io/abranzyck/sshd-bastion:rhel_ubi1"
+          image: "quay.io/abranzyck/sshd-bastion:rhel_ubi7"
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
-            runAsUser: 1001  # UID of tunneluser
           ports:
-            - containerPort: 22
+            - containerPort: 2222
               protocol: TCP
             - containerPort: 6343
               protocol: TCP

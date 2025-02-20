@@ -20,6 +20,11 @@ RUN useradd -m -s /bin/false --uid 1001 tunneluser && \
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+COPY root_entrypoint.sh /root_entrypoint.sh
+RUN chmod +x /root_entrypoint.sh
+COPY tunneluser_entrypoint.sh /tunneluser_entrypoint.sh
+RUN chmod +x /tunneluser_entrypoint.sh
+
 
 EXPOSE 2222/tcp 6343/tcp
 
