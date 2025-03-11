@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal
+FROM registry.access.redhat.com/ubi9/ubi-minimal
 
 RUN microdnf upgrade -y && \
     microdnf install -y socat net-tools procps vim nmap && \
