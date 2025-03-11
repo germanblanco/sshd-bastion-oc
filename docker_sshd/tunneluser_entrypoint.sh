@@ -6,7 +6,7 @@ if [[ "$SSH_KEY" ]]; then
     echo "$SSH_KEY" > /home/tunneluser/.ssh/authorized_keys
     chmod 600 /home/tunneluser/.ssh/authorized_keys
     mkdir -p /keys/etc/ssh
-    cp -r /etc/ssh/* /keys/etc/ssh
+    cp /etc/ssh/ssh_host* /keys/etc/ssh
     chmod 600 /keys/etc/ssh/*
     exec /usr/sbin/sshd -D -p 2222
 else

@@ -8,7 +8,8 @@ RUN useradd -m -s /bin/false --uid 1001 tunneluser && \
     mkdir -p /keys && \
     chmod 777 /keys && \
     ssh-keygen -A && \
-    chmod -R 666 /etc/ssh/* && \
+    chmod 666 /etc/ssh/ssh_host* && \
+    chmod 666 /etc/ssh/sshd_config && \
     sed -i 's/HostKey \/etc/HostKey \/keys\/etc/' /etc/ssh/sshd_config && \
     sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config && \
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
